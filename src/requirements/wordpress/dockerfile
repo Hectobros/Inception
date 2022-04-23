@@ -1,0 +1,9 @@
+FROM debian:buster
+
+RUN apt-get update -y
+RUN apt-get install -y curl php-fpm php-mbstring php-mysql
+
+RUN curl -k https://wordpress.org/latest.tar.gz --output /tmp/wp.tar.gz
+RUN tar xzf /tmp/wp.tar.gz --strip-components=1 -C /var/www/html/WordPress
+CMD service php7.3-fpm start
+
