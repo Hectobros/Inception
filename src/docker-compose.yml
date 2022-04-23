@@ -5,20 +5,41 @@ services:
         container_name: nginx
         build: requirements/nginx
         volumes:
-            - WordPress:/var/www/html/WordPress
+            - WordPress:/var/www/html/wordpress
         ports:
-            - "443:443"
+            - "4430:443"
+        depends_on:
+            - "wordpress"    
         restart: always
+        networks:
+            - inception_network
     wordpress:
         container_name: wordpress
         build: requirements/wordpress
         volumes:
-            - WordPress:/var/www/html/WordPress
+            - WordPress:/var/www/html/wordpress
         ports:
             - "9000:9000"
-        depends_on:
-            - "nginx"
         restart: always
+        networks:
+            - inception_network
+        depends_on:
+            - "mariadb"    
+    mariadb:
+        container_name: mariadb
+        build: requirements/mariadb
+    #    volumes:
+     #       - DB:/var/lib/mysql/
+        ports:
+            - "4360:3306"
+        restart: always
+        networks:
+            - inception_network    
+
+networks:
+  inception_network:
+    driver: bridge
 
 volumes:
     WordPress:
+   # DB:
