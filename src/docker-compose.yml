@@ -7,31 +7,42 @@ services:
         volumes:
             - WordPress:/var/www/html/wordpress
         ports:
-            - "4430:443"
+            - "443:443"
         depends_on:
             - "wordpress"    
         restart: always
         networks:
             - inception_network
     wordpress:
+        env_file:
+            - .env
         container_name: wordpress
-        build: requirements/wordpress
+        build:
+            context: requirements/wordpress
+            args:
+                - PASSWORDDB={PASSWORDDB}
         volumes:
             - WordPress:/var/www/html/wordpress
-        ports:
-            - "9000:9000"
+        #ports:
+        #    - "9000:9000"
         restart: always
         networks:
             - inception_network
         depends_on:
             - "mariadb"    
     mariadb:
+        env_file:
+            - .env
         container_name: mariadb
-        build: requirements/mariadb
-    #    volumes:
-     #       - DB:/var/lib/mysql/
-        ports:
-            - "4360:3306"
+        build:
+            context: requirements/mariadb
+            args:
+                - PASSWORDDB={PASSWORDDB}
+                - PASSWORDROOT={PASSWORDROOT}
+        volumes:
+           - DB:/var/lib/mysql/
+        #ports:
+        #    - "3306:3306"
         restart: always
         networks:
             - inception_network    
@@ -42,4 +53,16 @@ networks:
 
 volumes:
     WordPress:
-   # DB:
+        driver: local
+        driver_opts: 
+            type:
+                none
+            device: /home/nschmitt/data/WordPress
+            o: bind
+    DB:
+        driver: local
+        driver_opts: 
+            type:
+                none
+            device: /home/nschmitt/data/DB
+            o: bind

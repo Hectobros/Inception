@@ -6,17 +6,24 @@ touch /var/run/mysqld/mysqld.sock
 chmod 777 /var/run/mysqld
 chmod 777 /var/run/mysqld/mysqld.sock
 
-if [[ ! -f /var/lib/mysql/test ]]
+if [[ ! -d /var/lib/mysql/wordpress ]]
 then
-    mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 &
-    sleep 15
-    mysqladmin -u root password 'password'
-    mysqladmin -u root -ppassword create wordpress
-    echo "CREATE USER 'wpuser'@'%' IDENTIFIED BY 'pass';" | mysql -u root -ppassword
-    mysql -u root -ppassword -Dwordpress < db.sql
-    echo "GRANT ALL ON wordpress.* TO 'wpuser'@'%' IDENTIFIED BY 'pass';" | mysql -u root -ppassword
-    echo lezgongue
-    sleep infinity # PABIEN
+    echo a
+    mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 & ProcessSql=$! 
+    echo b
+    sleep 105
+    echo c
+    mysqladmin -u root password "$PASSWORDROOT"
+    mysqladmin -u root -p"$PASSWORDROOT" create wordpress
+    echo "CREATE USER 'wpuser'@'%' IDENTIFIED BY '$PASSWORDDB';" | mysql -u root -p"$PASSWORDROOT"
+    mysql -u root -p"$PASSWORDROOT" -Dwordpress < db.sql
+    echo "GRANT ALL ON wordpress.* TO 'wpuser'@'%' IDENTIFIED BY '$PASSWORDDB';" | mysql -u root -p"$PASSWORDROOT"
+    echo "todo bueno lezGONGUE"
+    wait -n $ProcessSql
+    
 else
-    mysqld --user=mysql --console --skip-name-resolve --skip-networking=0 $@
+    echo d
+    sleep 45
+    echo "Volume déjà loaded lezGONGUE"
+    mysqld --user=mysql
 fi

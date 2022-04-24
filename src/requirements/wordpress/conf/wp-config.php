@@ -26,7 +26,7 @@ define( 'DB_NAME', 'wordpress' );
 define( 'DB_USER', 'wpuser' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'pass' );
+define( 'DB_PASSWORD', '$PASSWORDDB' );
 
 /** Database hostname */
 define( 'DB_HOST', 'mariadb' );
@@ -48,14 +48,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         '34M5,Z`{3hX1HKyx4<P6+T|^r9SW:EK7M5a,/}^,+<ye[wwC#z?M,`cte#V>KjVw' );
-define( 'SECURE_AUTH_KEY',  '}8+C[Mij[Ay;V.1B.aP+GGKwKy944,l9M[jW >7F{y-(.|;fkg<]s3!d<{Z]Yw8-' );
-define( 'LOGGED_IN_KEY',    '[r^&J6tx&uD=mz?Y{Yw!nq@ QFon_)5O*K5F5KMRAX4^fvAO9`CGUVW$(m^<E!Cq' );
-define( 'NONCE_KEY',        '=R9 ]QIAIm]$k~vnXFW;~zB}V<P@+TXOt_L+Tp.bMILX<;/2( WuwheM!><jey1i' );
-define( 'AUTH_SALT',        'AA|=YM-znbF7vaU|0PdYpo=;SN-j_p|%8G@HPZ]@JL~oW5.{+sXk<2Kd(,!G4|=.' );
-define( 'SECURE_AUTH_SALT', ' O~jt[;Zg>r|yyhTz&VVzm-9RjE?WroYzh1|q,eyZ|sBe{j}T#74Eggw!j*+K4*[' );
-define( 'LOGGED_IN_SALT',   'L{a-q)sNh/&[w?fW[>RvQ.#pi`b=[cLFJ#G&T2/;PAhy?oPmWVb``]~/A-%Uf/O?' );
-define( 'NONCE_SALT',       'ur$1b$>7b8qbmF-v(TI$u6|,&nx:I}nMX-vDCbw2Vf`9-rE-gYwgvdM=-XCO:d &' );
+define( 'AUTH_KEY',         ';0yP@!vO.v2P0CusP|z-pGejmdvel3cf>P=Ix38$N^MKmZ>5>L/<gVOzabC_{YGE' );
+define( 'SECURE_AUTH_KEY',  '_v{cRk!3mOqCkuFY/qQplxBMQ)~a`=[~uCBs]XG5Xok-/G~x[W7v#!FZ;|VwV2?f' );
+define( 'LOGGED_IN_KEY',    'cnJ@/P6I9F$@-lgZFZ F2yz^ ({BMK->|kUy$sx_VGH>_GENaZ+I.{f5@ITNk%:~' );
+define( 'NONCE_KEY',        'y@A9,+MI;^M8{3 0!)wF@ef*grqL _(ic,3Lc{;PnG]O`xqyON)-j_z@?DVBeI)E' );
+define( 'AUTH_SALT',        'X{yv|1u@S-T`.qE)U};oiOM)rqb8deqpw/8%,#X8Y%lqJa[t;wNYvSGn~hgg4>Kp' );
+define( 'SECURE_AUTH_SALT', '(pW-9>wne)DlKVv2SX V,+LE|-jg@~Eq3YnOC:5O*jFLCND7=PK{oU@[v(jh}V4s' );
+define( 'LOGGED_IN_SALT',   'o7#xW5,7$I|>B{I%UYsI_B9D-.]1g8FL)+j<,k.92Dda6NKf%3,0`0V!jR>th;?o' );
+define( 'NONCE_SALT',       '<0/q}=vj[k!E^V8@4TJWAzc {n4h6HQ39~.{X)sMpnp50^HgO-(eTf_/;l3Pcj]Y' );
 
 /**#@-*/
 
@@ -94,3 +94,4 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /** Sets up WordPress vars and included files. */
 require_once ABSPATH . 'wp-settings.php';
+
