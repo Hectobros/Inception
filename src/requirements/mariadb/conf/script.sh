@@ -18,6 +18,8 @@ then
     echo "CREATE USER 'wpuser'@'%' IDENTIFIED BY '$PASSWORDDB';" | mysql -u root -p"$PASSWORDROOT"
     mysql -u root -p"$PASSWORDROOT" -Dwordpress < db.sql
     echo "GRANT ALL ON wordpress.* TO 'wpuser'@'%' IDENTIFIED BY '$PASSWORDDB';" | mysql -u root -p"$PASSWORDROOT"
+    mysql -e "UPDATE mysql.user SET Password = PASSWORD('$PASSWORDROOT') WHERE User = 'root'"
+    mysql -e "FLUSH PRIVILEGES"
     echo "todo bueno lezGONGUE"
     wait -n $ProcessSql
     

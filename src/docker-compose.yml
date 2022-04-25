@@ -4,6 +4,7 @@ services:
     nginx:
         container_name: nginx
         build: requirements/nginx
+        image: nginx
         volumes:
             - WordPress:/var/www/html/wordpress
         ports:
@@ -21,6 +22,7 @@ services:
             context: requirements/wordpress
             args:
                 - PASSWORDDB={PASSWORDDB}
+        image: wordpress
         volumes:
             - WordPress:/var/www/html/wordpress
         #ports:
@@ -39,6 +41,7 @@ services:
             args:
                 - PASSWORDDB={PASSWORDDB}
                 - PASSWORDROOT={PASSWORDROOT}
+        image: mariadb
         volumes:
            - DB:/var/lib/mysql/
         #ports:
